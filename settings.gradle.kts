@@ -1,1 +1,1 @@
-rootProject.name = "lhv-screening-service"
+rootProject.name = "screening-service"
