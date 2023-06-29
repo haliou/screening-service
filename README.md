@@ -28,8 +28,8 @@ Webservice to compare names against a list of sanctioned entities.
    **Please note the application is in a private repo so as to avoid 3rd party unauthorised access**
 
    ```bash
-   git clone https://github.com/haliou/moon-rover-api.git
-   cd moon-rover-api
+   git clone https://github.com/haliou/lhv-screening-service.git
+   cd lhv-screening-service
    ```
 2. **Build the application**
 
