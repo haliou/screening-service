@@ -1,9 +1,9 @@
-package md.lhv.verification.rest
+package md.lhv.screening.rest
 
-import md.lhv.verification.core.ScreeningService
-import md.lhv.verification.core.model.MatchResult
-import md.lhv.verification.rest.http.APIResponse
-import md.lhv.verification.rest.http.SuccessResponse
+import md.lhv.screening.core.ScreeningService
+import md.lhv.screening.core.model.MatchResult
+import md.lhv.screening.rest.http.APIResponse
+import md.lhv.screening.rest.http.SuccessResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

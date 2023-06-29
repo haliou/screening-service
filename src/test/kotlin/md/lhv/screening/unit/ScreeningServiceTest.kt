@@ -1,11 +1,11 @@
-package md.lhv.verification.unit
+package md.lhv.screening.unit
 
 import io.mockk.coEvery
 import io.mockk.mockk
-import md.lhv.verification.core.ScreeningService
-import md.lhv.verification.repository.ScreeningRepository
-import md.lhv.verification.repository.db.SanctionedPerson
-import md.lhv.verification.service.ScreeningServiceImpl
+import md.lhv.screening.core.ScreeningService
+import md.lhv.screening.repository.ScreeningRepository
+import md.lhv.screening.repository.db.SanctionedPerson
+import md.lhv.screening.service.ScreeningServiceImpl
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach

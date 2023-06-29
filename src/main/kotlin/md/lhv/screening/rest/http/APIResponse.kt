@@ -1,4 +1,4 @@
-package md.lhv.verification.rest.http
+package md.lhv.screening.rest.http
 
 
 /**

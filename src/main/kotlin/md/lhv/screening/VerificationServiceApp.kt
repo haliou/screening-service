@@ -1,4 +1,4 @@
-package md.lhv.verification
+package md.lhv.screening
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

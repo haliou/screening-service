@@ -1,6 +1,6 @@
-package md.lhv.verification.core
+package md.lhv.screening.core
 
-import md.lhv.verification.core.model.MatchResult
+import md.lhv.screening.core.model.MatchResult
 
 /**
  * Service to perform operations against the sanctions list

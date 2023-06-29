@@ -1,4 +1,4 @@
-package md.lhv.verification.repository.db
+package md.lhv.screening.repository.db
 
 import jakarta.persistence.*
 

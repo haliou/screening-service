@@ -1,9 +1,9 @@
-package md.lhv.verification.service
+package md.lhv.screening.service
 
-import md.lhv.verification.core.ScreeningService
-import md.lhv.verification.core.model.MatchResult
-import md.lhv.verification.repository.ScreeningRepository
-import md.lhv.verification.repository.db.SanctionedPerson
+import md.lhv.screening.core.ScreeningService
+import md.lhv.screening.core.model.MatchResult
+import md.lhv.screening.repository.ScreeningRepository
+import md.lhv.screening.repository.db.SanctionedPerson
 import org.springframework.stereotype.Service
 
 @Service("ScreeningService")

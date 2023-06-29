@@ -30,7 +30,7 @@
 
     <!-- Specific logger settings -->
     <logger name="org.springframework" level="info"/>
-    <logger name="md.lhv.verification" level="info"/>
+    <logger name="md.lhv.screening" level="info"/>
 
     <springProfile name="dev">
         <root level="info">

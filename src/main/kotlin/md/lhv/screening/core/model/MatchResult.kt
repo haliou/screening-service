@@ -1,4 +1,4 @@
-package md.lhv.verification.core.model
+package md.lhv.screening.core.model
 
 /**
  * Represent the result of a check against the sanctions list
