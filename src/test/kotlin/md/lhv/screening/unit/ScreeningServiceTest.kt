@@ -64,7 +64,17 @@ class ScreeningServiceTest {
             SanctionedPerson(name = "Bin Laden"),
         )
 
-        val result = screeningService.checkName("bin the an laden")
+        val result = screeningService.checkName("to the osama bin laden;")
+        assertTrue(result.isMatch)
+    }
+
+    @Test
+    fun `test name check with punctuations`() {
+        coEvery { screeningRepository.findAll() } returns listOf(
+            SanctionedPerson(name = "Bin Laden"),
+        )
+
+        val result = screeningService.checkName("Osama, Bin, Laden")
         assertTrue(result.isMatch)
     }
 

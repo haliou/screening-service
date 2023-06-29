@@ -45,6 +45,10 @@ Webservice to compare names against a list of sanctioned entities.
 
 The service should now be available at http://localhost:8080
 
+There's a docker compose file in the `./docker` directory for a local mysql database.
+
+** Run ```docker-compose up``` to start the DB.
+
 ## Testing
 
 Unit tests and integration tests have been written for the service.
@@ -66,6 +70,7 @@ The Screening service supports the following operations
 ```
 
 2. Add a new entry into the database
+
 ```bash
 curl -X POST "http://localhost:8080/api/v1/screening" \
      -H "content-type: application/json" \
@@ -73,6 +78,7 @@ curl -X POST "http://localhost:8080/api/v1/screening" \
 ```
 
 3. Update an existing entry
+
 ```bash
 curl -X PATCH "http://localhost:8080/api/v1/screening" \
      -H "content-type: application/json" \
@@ -80,6 +86,7 @@ curl -X PATCH "http://localhost:8080/api/v1/screening" \
 ```
 
 4. Delete an entry
+
 ```bash
  curl -X DELETE http://localhost:8080/api/v1/screening?name=Bin%20Laden
 ```

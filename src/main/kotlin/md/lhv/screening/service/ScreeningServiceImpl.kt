@@ -16,6 +16,7 @@ class ScreeningServiceImpl(private val screeningRepository: ScreeningRepository)
         // Get all the names in lowercase format
         val sanctionNamesList = screeningRepository.findAll().flatMap { it.name.lowercase().split("\\s".toRegex()) }
 
+        //TODO(Remove punctuations)
         val match = nameParts.any {
             it.lowercase() in sanctionNamesList
         }
