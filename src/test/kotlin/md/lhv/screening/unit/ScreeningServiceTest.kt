@@ -49,6 +49,26 @@ class ScreeningServiceTest {
     }
 
     @Test
+    fun `test name check with cases`() {
+        coEvery { screeningRepository.findAll() } returns listOf(
+            SanctionedPerson(name = "Bin Laden"),
+        )
+
+        val result = screeningService.checkName("bin laden")
+        assertTrue(result.isMatch)
+    }
+
+    @Test
+    fun `test name check with noise words`() {
+        coEvery { screeningRepository.findAll() } returns listOf(
+            SanctionedPerson(name = "Bin Laden"),
+        )
+
+        val result = screeningService.checkName("bin the an laden")
+        assertTrue(result.isMatch)
+    }
+
+    @Test
     fun `test false positive name check`() {
         coEvery { screeningRepository.findAll() } returns listOf(
             SanctionedPerson(name = "Pablo Escobar")

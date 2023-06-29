@@ -57,7 +57,7 @@ class ScreeningControllerTest {
     @Test
     fun `addNewEntry adds a new entry`() {
         val addRequest = AddRequest("Bin Laden")
-        `when`(screeningService.addSanctionedName(addRequest.namem)).thenReturn(true)
+        `when`(screeningService.addSanctionedName(addRequest.name)).thenReturn(true)
 
         mockMvc.perform(
             post("/api/v1/screening")
@@ -67,7 +67,7 @@ class ScreeningControllerTest {
             .andExpect(status().isCreated)
             .andExpect(content().json(objectMapper.writeValueAsString(SuccessResponse(true))))
 
-        verify(screeningService, times(1)).addSanctionedName(addRequest.namem)
+        verify(screeningService, times(1)).addSanctionedName(addRequest.name)
     }
 
     @Test

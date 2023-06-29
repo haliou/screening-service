@@ -8,7 +8,7 @@ sealed class RequestPayload
 /**
  * Add new entry request payload
  */
-class AddRequest(val namem: String) : RequestPayload()
+class AddRequest(val name: String, val date_of_birth: String? = null) : RequestPayload()
 
 /**
  * Update existing entry request payload

@@ -12,14 +12,20 @@ class ScreeningServiceImpl(private val screeningRepository: ScreeningRepository)
     override fun checkName(name: String): MatchResult {
 
         val nameParts = name.split("\\s".toRegex())
-        val sanctionNamesList = screeningRepository.findAll().flatMap { it.name.split("\\s".toRegex()) }
+
+        // Get all the names in lowercase format
+        val sanctionNamesList = screeningRepository.findAll().flatMap { it.name.lowercase().split("\\s".toRegex()) }
 
         val match = nameParts.any {
-            it in sanctionNamesList
+            it.lowercase() in sanctionNamesList
         }
 
+        //TODO(Use fuzzy string matching algorithms like the Levenshtein distance for a more robust matching)
+
         return MatchResult(isMatch = match)
+
     }
+
 
     override fun addSanctionedName(name: String): Boolean {
         val sanctionedPerson = SanctionedPerson(name = name)
@@ -59,4 +65,6 @@ class ScreeningServiceImpl(private val screeningRepository: ScreeningRepository)
             false
         }
     }
+
+
 }

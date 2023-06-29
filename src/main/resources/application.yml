@@ -1,3 +1,6 @@
+sanctioned:
+  list:
+    url: http://eeas.europa.eu/cfsp/sanctions/consol-list/index_en.htm
 
 spring:
   datasource:

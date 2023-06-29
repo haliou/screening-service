@@ -1,5 +1,7 @@
 # Screening Service
 
+Webservice to compare names against a list of sanctioned entities.
+
 ## Table of Contents
 
 - [Tech Stack](#tech-stack)

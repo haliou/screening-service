@@ -31,10 +31,10 @@ class ScreeningController {
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun addNewEntry(@RequestBody addRequest: AddRequest): ResponseEntity<APIResponse> {
-        logger.info("Received request to verify '${addRequest.namem}'")
+        logger.info("Received request to create a new entry for '${addRequest}'")
 
         return try {
-            val success = screeningService.addSanctionedName(addRequest.namem)
+            val success = screeningService.addSanctionedName(addRequest.name)
             ResponseEntity(
                 SuccessResponse(success = success),
                 HttpStatus.CREATED
@@ -50,6 +50,7 @@ class ScreeningController {
 
     @PatchMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
     fun updateEntry(@RequestBody updateRequest: UpdateRequest): ResponseEntity<APIResponse> {
+        logger.info("Received request to update an existing entry '$updateRequest'")
         return try {
             val success = screeningService.updateSanctionedName(
                 oldName = updateRequest.oldName, newName = updateRequest.newName
@@ -68,7 +69,7 @@ class ScreeningController {
 
     @DeleteMapping()
     fun deleteEntry(@RequestParam name: String): ResponseEntity<APIResponse> {
-
+        logger.info("Received request to delete an existing entry '$name'")
         return try {
             val success = screeningService.removeSanctionedName(name)
             ResponseEntity(
