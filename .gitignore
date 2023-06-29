@@ -1,0 +1,15 @@
+HELP.md
+.idea
+.gradle
+build/
+*.iws
+*.iml
+*.ipr
+out/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+
