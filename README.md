@@ -29,11 +29,11 @@
    git clone https://github.com/haliou/moon-rover-api.git
    cd moon-rover-api
    ```
-   **Build the application**
+2. **Build the application**
 
-   ```bash
-   ./gradlew clean build
-   ```
+```bash
+./gradlew clean build
+```
 
 3. **Run the application**
 
@@ -55,6 +55,28 @@ Run the tests with:
 
 ## Usage
 
+The Screening service supports the following operations
+
+1. Verify the provided name if a match exist against the database
+
+```bash
+ curl http://localhost:8080/api/v1/screening?name=Bin%20Laden
+```
+
+2. Add a new entry into the database
+```bash
+
+```
+
+3. Update an existing entry
+```bash
+ curl -X DELETE http://localhost:8080/api/v1/screening?name=Bin%20Laden
+```
+
+4. Delete an entry
+```bash
+ curl -X DELETE http://localhost:8080/api/v1/screening?name=Bin%20Laden
+```
 
 ## Continuous Integration and Deployment
 

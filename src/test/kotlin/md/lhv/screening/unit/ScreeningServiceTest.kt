@@ -58,29 +58,5 @@ class ScreeningServiceTest {
         assertFalse(result.isMatch)
     }
 
-   /* @Test
-    fun `test add sanctioned name`() {
-        val success = screeningService.addSanctionedName("Saddam Hussein")
-        assertTrue(success)
-    }
-
-    @Test
-    fun `test update sanctioned name`() {
-        screeningService.addSanctionedName("Saddam Hussein")
-        val success = screeningService.updateSanctionedName("Saddam Hussein", "Hussein Saddam")
-        assertTrue(success)
-        val result = screeningService.checkName("Bin Laden")
-        assertTrue(result.isMatch)
-    }
-
-    @Test
-    fun `test remove sanctioned name`() {
-        screeningService.addSanctionedName("Bin Laden")
-        val success = screeningService.removeSanctionedName("Bin Laden")
-        assertTrue(success)
-        val result = screeningService.checkName("Bin Laden")
-        assertFalse(result.isMatch)
-    }*/
-
 
 }

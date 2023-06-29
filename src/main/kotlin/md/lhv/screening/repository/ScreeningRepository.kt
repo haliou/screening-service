@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ScreeningRepository : JpaRepository<SanctionedPerson, Long> {
 
-    fun findByName(name: String): SanctionedPerson
+    fun findByName(name: String): SanctionedPerson?
 }

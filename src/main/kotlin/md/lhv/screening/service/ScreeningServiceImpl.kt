@@ -33,11 +33,14 @@ class ScreeningServiceImpl(private val screeningRepository: ScreeningRepository)
     }
 
     override fun updateSanctionedName(oldName: String, newName: String): Boolean {
-        val existingEntry = screeningRepository.findByName(oldName)
-        existingEntry.name = newName
         return try {
-            screeningRepository.save(existingEntry)
+            val existingEntry = screeningRepository.findByName(oldName)
+            existingEntry?.let {
+                it.name = newName
+                screeningRepository.save(it)
+            }
             true
+
         } catch (ex: Exception) {
             // Log exception
             false
@@ -45,9 +48,11 @@ class ScreeningServiceImpl(private val screeningRepository: ScreeningRepository)
     }
 
     override fun removeSanctionedName(name: String): Boolean {
-        val existingEntry = screeningRepository.findByName(name)
         return try {
-            screeningRepository.delete(existingEntry)
+            val existingEntry = screeningRepository.findByName(name)
+            existingEntry?.let {
+                screeningRepository.delete(it)
+            }
             true
         } catch (ex: Exception) {
             // Log exception
