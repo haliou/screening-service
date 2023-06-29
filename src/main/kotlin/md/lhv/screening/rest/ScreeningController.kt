@@ -2,8 +2,7 @@ package md.lhv.screening.rest
 
 import md.lhv.screening.core.ScreeningService
 import md.lhv.screening.core.model.MatchResult
-import md.lhv.screening.rest.http.APIResponse
-import md.lhv.screening.rest.http.SuccessResponse
+import md.lhv.screening.rest.http.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,7 +18,6 @@ class ScreeningController {
     private var logger: Logger = LoggerFactory.getLogger(ScreeningController::class.java)
 
 
-
     @Autowired
     private lateinit var screeningService: ScreeningService
 
@@ -31,32 +29,58 @@ class ScreeningController {
     }
 
 
-    @PostMapping()
-    fun addNewEntry(@RequestBody name: String): ResponseEntity<APIResponse> {
-        val success = screeningService.addSanctionedName(name)
-        return ResponseEntity(
-            SuccessResponse(success = success),
-            HttpStatus.CREATED
-        )
+    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
+    fun addNewEntry(@RequestBody addRequest: AddRequest): ResponseEntity<APIResponse> {
+        logger.info("Received request to verify '${addRequest.namem}'")
+
+        return try {
+            val success = screeningService.addSanctionedName(addRequest.namem)
+            ResponseEntity(
+                SuccessResponse(success = success),
+                HttpStatus.CREATED
+            )
+        } catch (ex: Exception) {
+            ResponseEntity(
+                ErrorResponse(description = "An error occurred"),
+                HttpStatus.INTERNAL_SERVER_ERROR
+            )
+        }
     }
 
 
-    @PatchMapping()
-    fun updateEntry(@RequestParam oldName: String, @RequestParam newName: String): ResponseEntity<APIResponse> {
-        val success = screeningService.updateSanctionedName(oldName = oldName, newName = newName)
-        return ResponseEntity(
-            SuccessResponse(success = success),
-            HttpStatus.OK
-        )
+    @PatchMapping(consumes = [MediaType.APPLICATION_JSON_VALUE])
+    fun updateEntry(@RequestBody updateRequest: UpdateRequest): ResponseEntity<APIResponse> {
+        return try {
+            val success = screeningService.updateSanctionedName(
+                oldName = updateRequest.oldName, newName = updateRequest.newName
+            )
+            ResponseEntity(
+                SuccessResponse(success = success),
+                HttpStatus.OK
+            )
+        } catch (ex: Exception) {
+            ResponseEntity(
+                ErrorResponse(description = "An error occurred"),
+                HttpStatus.INTERNAL_SERVER_ERROR
+            )
+        }
     }
 
     @DeleteMapping()
     fun deleteEntry(@RequestParam name: String): ResponseEntity<APIResponse> {
-        val success = screeningService.removeSanctionedName(name)
-        return ResponseEntity(
-            SuccessResponse(success = success),
-            HttpStatus.OK
-        )
+
+        return try {
+            val success = screeningService.removeSanctionedName(name)
+            ResponseEntity(
+                SuccessResponse(success = success),
+                HttpStatus.OK
+            )
+        } catch (ex: Exception) {
+            ResponseEntity(
+                ErrorResponse(description = "An error occurred"),
+                HttpStatus.INTERNAL_SERVER_ERROR
+            )
+        }
     }
 
 

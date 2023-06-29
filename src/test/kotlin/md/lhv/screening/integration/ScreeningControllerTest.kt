@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import md.lhv.screening.core.model.MatchResult
+import md.lhv.screening.rest.http.AddRequest
+import md.lhv.screening.rest.http.UpdateRequest
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -28,6 +30,7 @@ class ScreeningControllerTest {
 
     @MockBean
     private lateinit var screeningService: ScreeningService
+
 
     @BeforeEach
     fun setup() {
@@ -53,41 +56,39 @@ class ScreeningControllerTest {
 
     @Test
     fun `addNewEntry adds a new entry`() {
-        val name = "testName"
-        `when`(screeningService.addSanctionedName(name)).thenReturn(true)
+        val addRequest = AddRequest("Bin Laden")
+        `when`(screeningService.addSanctionedName(addRequest.namem)).thenReturn(true)
 
         mockMvc.perform(
             post("/api/v1/screening")
-                .content(name)
+                .content(objectMapper.writeValueAsString(addRequest))
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isCreated)
             .andExpect(content().json(objectMapper.writeValueAsString(SuccessResponse(true))))
 
-        verify(screeningService, times(1)).addSanctionedName(name)
+        verify(screeningService, times(1)).addSanctionedName(addRequest.namem)
     }
 
     @Test
     fun `updateEntry updates an entry`() {
-        val oldName = "oldTestName"
-        val newName = "newTestName"
-        `when`(screeningService.updateSanctionedName(oldName, newName)).thenReturn(true)
+        val updateRequest = UpdateRequest("Bin Laden", "Saddam Hussein")
+        `when`(screeningService.updateSanctionedName(updateRequest.oldName, updateRequest.newName)).thenReturn(true)
 
         mockMvc.perform(
             patch("/api/v1/screening")
-                .param("oldName", oldName)
-                .param("newName", newName)
+                .content(objectMapper.writeValueAsString(updateRequest))
                 .contentType(MediaType.APPLICATION_JSON)
         )
             .andExpect(status().isOk)
             .andExpect(content().json(objectMapper.writeValueAsString(SuccessResponse(true))))
 
-        verify(screeningService, times(1)).updateSanctionedName(oldName, newName)
+        verify(screeningService, times(1)).updateSanctionedName(updateRequest.oldName, updateRequest.newName)
     }
 
     @Test
     fun `deleteEntry deletes an entry`() {
-        val name = "testName"
+        val name = "Bin Laden"
         `when`(screeningService.removeSanctionedName(name)).thenReturn(true)
 
         mockMvc.perform(

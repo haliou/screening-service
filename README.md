@@ -65,12 +65,16 @@ The Screening service supports the following operations
 
 2. Add a new entry into the database
 ```bash
-
+curl -X POST "http://localhost:8080/api/v1/screening" \
+     -H "content-type: application/json" \
+     -d "{\"name\": \"Bin Laden\"}"
 ```
 
 3. Update an existing entry
 ```bash
- curl -X DELETE http://localhost:8080/api/v1/screening?name=Bin%20Laden
+curl -X PATCH "http://localhost:8080/api/v1/screening" \
+     -H "content-type: application/json" \
+     -d "{\"oldName\": \"Bin Laden\",\"newName\": \"Saddam Hussein\"}"
 ```
 
 4. Delete an entry
@@ -86,6 +90,7 @@ The actions are located in the `.github/workflows` directory.
 
 ## Enabling Production-ready Features
 
+- Use a redis cache for storing/retrieving results and avoid database hit for duplicate requests.
 - Spring Boot Actuator for health checks
 - Logging to file and setup distributed logging with ( for example ELK stack)
 - Custom metrics collection with Micrometer
