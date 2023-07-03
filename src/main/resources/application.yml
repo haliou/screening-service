@@ -1,1 +1,13 @@
+sanctioned:
+  list:
+    url: http://eeas.europa.eu/cfsp/sanctions/consol-list/index_en.htm
 
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/screening
+    username: root
+    password: s3cre3t
+  jpa:
+    hibernate:
+      ddl-auto: update
